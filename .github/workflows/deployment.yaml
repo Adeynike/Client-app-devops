@@ -22,6 +22,7 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       uses: actions/setup-node@v3
+    - run: npm install yarn -g
     - run: |
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
@@ -30,8 +31,6 @@ jobs:
           else
           npm i
           fi
-    - run: npm install yarn -g
-    - run: yarn install
     - run: yarn build --if-present
     - name: Clear contents of /var/www/html
       run: sudo rm -rf /var/www/html/*
