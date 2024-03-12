@@ -20,8 +20,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm install
+    - name: Install dependencies
+      uses: actions/setup-node@v3
+    - run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
     - run: npm install yarn -g
     - run: yarn install
     - run: yarn build --if-present
