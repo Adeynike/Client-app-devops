@@ -41,7 +41,7 @@ function App() {
   };
 
   const updateEmployeeWage = (id) => {
-    Axios.put("http://54.91.65.156:3001/update", { wage: newWage, id: id }).then(
+    Axios.put("http://54.237.131.100:3001/update", { wage: newWage, id: id }).then(
       (response) => {
         setEmployeeList(
           employeeList.map((val) => {
